@@ -24,17 +24,22 @@ Der grosse Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilde
 
 <hr /></section>
 
+<section><h6>CENTER</h6>
+
 <section><h6>DYNAMIC_COMPONENT</h6>
 
 ```
 {
   "autoHtml": false,
   "props": {
-    "text": "EMBDED Edge to Edge"
+    "text": "EMBDED Edge to Edge",
+    "showSlider": true
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
 ```
+
+<hr /></section>
 
 <hr /></section>
 
@@ -48,7 +53,71 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
 {
   "autoHtml": false,
   "props": {
-    "text": "EMBDED Center"
+    "text": "EMBDED Center",
+    "showLabel": true
+  },
+  "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
+}
+```
+
+<hr /></section>
+
+<hr /></section>
+
+<section><h6>CENTER</h6>
+
+Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse. Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort. Unterwegs traf es eine Copy.
+
+<section><h6>DYNAMIC_COMPONENT</h6>
+
+```
+{
+  "autoHtml": false,
+  "props": {
+    "text": "EMBDED Center",
+    "showAllBars": true
+  },
+  "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
+}
+```
+
+<hr /></section>
+
+<hr /></section>
+
+<section><h6>CENTER</h6>
+
+Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse. Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort. Unterwegs traf es eine Copy.
+
+<section><h6>DYNAMIC_COMPONENT</h6>
+
+```
+{
+  "autoHtml": false,
+  "props": {
+    "text": "EMBDED Center",
+    "showPoorerBars": true
+  },
+  "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
+}
+```
+
+<hr /></section>
+
+<hr /></section>
+
+<section><h6>CENTER</h6>
+
+Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse. Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort. Unterwegs traf es eine Copy.
+
+<section><h6>DYNAMIC_COMPONENT</h6>
+
+```
+{
+  "autoHtml": false,
+  "props": {
+    "text": "EMBDED Center",
+    "showRicherBars": true
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
