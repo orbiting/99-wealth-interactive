@@ -484,6 +484,7 @@ const Index = ({
         <>
           <P>Was schätzen Sie? In welcher Perzentile liegt Ihr Vermögen?</P>
           <Slider
+            label={'Ihre Schätzung: ' + sliderValue + '. Perzentile'}
             value={sliderValue}
             min='0'
             max='99'
@@ -564,16 +565,16 @@ const Index = ({
             yScaleInvert: true,
             xAnnotations: [
               {
-                x: sliderValue,
-                value: barChartData[sliderValue].value,
+                x: sliderValue.toString(),
+                value: Number(barChartData[sliderValue].value),
                 label: 'Schätzung',
                 showValue: false,
                 position: 'bottom',
                 align: 'left',
               },
               {
-                x: userPercentile,
-                value: userWealth,
+                x: userPercentile.toString(),
+                value: Number(userWealth),
                 label: 'Tatsächlich',
                 showValue: false,
                 position: 'bottom',
@@ -613,15 +614,15 @@ const Index = ({
             yScaleInvert: true,
             xAnnotations: [
               {
-                x: sliderValue,
-                value: barChartData[sliderValue].value,
+                x: sliderValue.toString(),
+                value: Number(barChartData[sliderValue].value),
                 label: 'Schätzung',
                 showValue: false,
                 position: 'bottom',
                 align: 'left',
               },
               {
-                x: userPercentile,
+                x: userPercentile.toString(),
                 value: userWealth,
                 label: 'Tatsächlich',
                 showValue: false,
