@@ -562,6 +562,23 @@ const Index = ({
             unit: 'Franken',
             xUnit: '. Perzentil',
             yScaleInvert: true,
+            xAnnotations: [
+              {
+                x: sliderValue,
+                value: barChartData[sliderValue].value,
+                label: 'Schätzung',
+                showValue: false,
+                position: 'bottom',
+                align: 'left',
+              },
+              {
+                x: userPercentile,
+                value: userWealth,
+                label: 'Tatsächlich',
+                showValue: false,
+                position: 'bottom',
+              },
+            ],
           }}
           values={barChartData.map((d) => {
             return {
@@ -594,6 +611,23 @@ const Index = ({
             unit: 'Franken',
             xUnit: '. Perzentil',
             yScaleInvert: true,
+            xAnnotations: [
+              {
+                x: sliderValue,
+                value: barChartData[sliderValue].value,
+                label: 'Schätzung',
+                showValue: false,
+                position: 'bottom',
+                align: 'left',
+              },
+              {
+                x: userPercentile,
+                value: userWealth,
+                label: 'Tatsächlich',
+                showValue: false,
+                position: 'bottom',
+              },
+            ],
           }}
           values={barChartData.map((d) => {
             return {
