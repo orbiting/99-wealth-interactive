@@ -628,6 +628,16 @@ const Index = ({
                 showValue: false,
                 position: 'bottom',
               },
+              {
+                x1: '0',
+                x2: '90',
+                value: 656804,
+                label: 'Reichste 10 Prozent',
+                showValue: true,
+                unit: 'Franken',
+                position: 'bottom',
+                ghost: true,
+              },
             ],
           }}
           values={barChartData.map((d) => {
