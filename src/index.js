@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import { css } from 'glamor'
-import { mediaQueries, Slider, Field, Interaction } from '@project-r/styleguide'
+
+import { Slider, Field, Interaction } from '@project-r/styleguide'
 import { Chart } from '@project-r/styleguide/chart'
+
+import { useEventListener, createCustomEvent, toNumber } from './lib/utils'
+
 const { P } = Interaction
-// const ASSETS_BASE_URL = 'https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/assets'
 
 const styles = {
   sliderLabels: css({
@@ -434,14 +437,14 @@ const Index = ({
   showPoorerBars,
   showRicherBars,
 }) => {
-  const [sliderValue, setSliderValue] = React.useState(80)
-  const [barChartData, setBarChartData] = React.useState(data)
-  const [userWealth, setUserWealth] = React.useState(100000)
-  const [userPercentile, setUserPercentile] = React.useState(25)
+  const [sliderValue, setSliderValue] = useState(80)
+  const [barChartData, setBarChartData] = useState(data)
+  const [userWealth, setUserWealth] = useState(100000)
+  const [userPercentile, setUserPercentile] = useState(25)
 
   console.log(barChartData)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBarChartData(
       data.map((d) => {
         return {
@@ -458,7 +461,7 @@ const Index = ({
     )
   }, [sliderValue, userPercentile])
 
-  React.useEffect(() => {
+  useEffect(() => {
     data.forEach((d, i) => {
       if (
         i !== 0 &&
@@ -470,13 +473,25 @@ const Index = ({
     })
   }, [userWealth])
 
-  useEventListener('sliderMove', (event) => {
-    setSliderValue(event.detail)
-  })
+  useEventListener('sliderMove', (event) => setSliderValue(event.detail))
+  useEventListener('wealthInput', (event) => setUserWealth(event.detail))
 
-  useEventListener('wealthInput', (event) => {
-    setUserWealth(event.detail)
-  })
+  const onChangeSliderValue = (_, value) => {
+    setSliderValue(toNumber(value))
+    window.dispatchEvent(
+      createCustomEvent('sliderMove', { detail: toNumber(value) })
+    )
+  }
+
+  const onChangeUserWealth = (_, value) => {
+    setUserWealth(toNumber(value))
+    window.dispatchEvent(
+      createCustomEvent('wealthInput', { detail: toNumber(value) })
+    )
+  }
+
+  const createOnTickUserWealth = (inc) =>
+     (_) => onChangeUserWealth(_, userWealth + inc)
 
   return (
     <div>
@@ -489,11 +504,7 @@ const Index = ({
             min='0'
             max='99'
             fullWidth
-            onChange={(_, value) => {
-              window.dispatchEvent(
-                new CustomEvent('sliderMove', { detail: value })
-              )
-            }}
+            onChange={onChangeSliderValue}
           />
           <div {...styles.sliderLabels}>
             <span>0</span>
@@ -505,13 +516,9 @@ const Index = ({
         <Field
           label='Vermögen'
           value={userWealth}
-          onChange={(_, value) => {
-            window.dispatchEvent(
-              new CustomEvent('wealthInput', { detail: value })
-            )
-          }}
-          onInc={() => setUserWealth(userWealth + 1000)}
-          onDec={() => setUserWealth(userWealth - 1000)}
+          onChange={onChangeUserWealth}
+          onInc={createOnTickUserWealth(1000)}
+          onDec={createOnTickUserWealth(-1000)}
         />
       )}
 
@@ -654,38 +661,3 @@ const Index = ({
 }
 
 export default Index
-
-// Hook
-function useEventListener(eventName, handler, element = window) {
-  // Create a ref that stores handler
-  const savedHandler = React.useRef()
-
-  // Update ref.current value if handler changes.
-  // This allows our effect below to always get latest handler ...
-  // ... without us needing to pass it in effect deps array ...
-  // ... and potentially cause effect to re-run every render.
-  React.useEffect(() => {
-    savedHandler.current = handler
-  }, [handler])
-
-  React.useEffect(
-    () => {
-      // Make sure element supports addEventListener
-      // On
-      const isSupported = element && element.addEventListener
-      if (!isSupported) return
-
-      // Create event listener that calls handler function stored in ref
-      const eventListener = (event) => savedHandler.current(event)
-
-      // Add event listener
-      element.addEventListener(eventName, eventListener)
-
-      // Remove event listener on cleanup
-      return () => {
-        element.removeEventListener(eventName, eventListener)
-      }
-    },
-    [eventName, element] // Re-run if eventName or element changes
-  )
-}
