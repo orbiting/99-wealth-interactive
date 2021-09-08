@@ -15,16 +15,6 @@ const styles = {
     marginTop: 10,
     marginBottom: 20,
   }),
-  barContainer: css({
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-  }),
-  barRectangle: css({
-    height: '50px',
-    width: '4px',
-    backgroundColor: 'red',
-  }),
 }
 
 const data = [
@@ -33,399 +23,399 @@ const data = [
     threshold: 0,
   },
   {
-    percentile: 0.01,
+    percentile: 1,
     threshold: 0,
   },
   {
-    percentile: 0.02,
+    percentile: 2,
     threshold: 0,
   },
   {
-    percentile: 0.03,
+    percentile: 3,
     threshold: 0,
   },
   {
-    percentile: 0.04,
+    percentile: 4,
     threshold: 0,
   },
   {
-    percentile: 0.05,
+    percentile: 5,
     threshold: 0,
   },
   {
-    percentile: 0.06,
+    percentile: 6,
     threshold: 0,
   },
   {
-    percentile: 0.07,
+    percentile: 7,
     threshold: 0,
   },
   {
-    percentile: 0.08,
+    percentile: 8,
     threshold: 0,
   },
   {
-    percentile: 0.09,
+    percentile: 9,
     threshold: 0,
   },
   {
-    percentile: 0.1,
+    percentile: 10,
     threshold: 0,
   },
   {
-    percentile: 0.11,
+    percentile: 11,
     threshold: 0,
   },
   {
-    percentile: 0.12,
+    percentile: 12,
     threshold: 0,
   },
   {
-    percentile: 0.13,
+    percentile: 13,
     threshold: 0,
   },
   {
-    percentile: 0.14,
+    percentile: 14,
     threshold: 0,
   },
   {
-    percentile: 0.15,
+    percentile: 15,
     threshold: 0,
   },
   {
-    percentile: 0.16,
+    percentile: 16,
     threshold: 0,
   },
   {
-    percentile: 0.17,
+    percentile: 17,
     threshold: 0,
   },
   {
-    percentile: 0.18,
+    percentile: 18,
     threshold: 0,
   },
   {
-    percentile: 0.19,
+    percentile: 19,
     threshold: 0,
   },
   {
-    percentile: 0.2,
+    percentile: 20,
     threshold: 0,
   },
   {
-    percentile: 0.21,
+    percentile: 21,
     threshold: 0,
   },
   {
-    percentile: 0.22,
+    percentile: 22,
     threshold: 0,
   },
   {
-    percentile: 0.23,
+    percentile: 23,
     threshold: 0,
   },
   {
-    percentile: 0.24,
+    percentile: 24,
     threshold: 110,
   },
   {
-    percentile: 0.25,
+    percentile: 25,
     threshold: 381,
   },
   {
-    percentile: 0.26,
+    percentile: 26,
     threshold: 732,
   },
   {
-    percentile: 0.27,
+    percentile: 27,
     threshold: 1166,
   },
   {
-    percentile: 0.28,
+    percentile: 28,
     threshold: 1682,
   },
   {
-    percentile: 0.29,
+    percentile: 29,
     threshold: 2280,
   },
   {
-    percentile: 0.3,
+    percentile: 30,
     threshold: 2962,
   },
   {
-    percentile: 0.31,
+    percentile: 31,
     threshold: 3726,
   },
   {
-    percentile: 0.32,
+    percentile: 32,
     threshold: 4575,
   },
   {
-    percentile: 0.33,
+    percentile: 33,
     threshold: 5507,
   },
   {
-    percentile: 0.34,
+    percentile: 34,
     threshold: 6523,
   },
   {
-    percentile: 0.35,
+    percentile: 35,
     threshold: 7624,
   },
   {
-    percentile: 0.36,
+    percentile: 36,
     threshold: 8810,
   },
   {
-    percentile: 0.37,
+    percentile: 37,
     threshold: 10081,
   },
   {
-    percentile: 0.38,
+    percentile: 38,
     threshold: 11438,
   },
   {
-    percentile: 0.39,
+    percentile: 39,
     threshold: 12883,
   },
   {
-    percentile: 0.4,
+    percentile: 40,
     threshold: 14415,
   },
   {
-    percentile: 0.41,
+    percentile: 41,
     threshold: 16038,
   },
   {
-    percentile: 0.42,
+    percentile: 42,
     threshold: 17752,
   },
   {
-    percentile: 0.43,
+    percentile: 43,
     threshold: 19561,
   },
   {
-    percentile: 0.44,
+    percentile: 44,
     threshold: 21469,
   },
   {
-    percentile: 0.45,
+    percentile: 45,
     threshold: 23480,
   },
   {
-    percentile: 0.46,
+    percentile: 46,
     threshold: 25601,
   },
   {
-    percentile: 0.47,
+    percentile: 47,
     threshold: 27838,
   },
   {
-    percentile: 0.48,
+    percentile: 48,
     threshold: 30203,
   },
   {
-    percentile: 0.49,
+    percentile: 49,
     threshold: 32706,
   },
   {
-    percentile: 0.5,
+    percentile: 50,
     threshold: 35364,
   },
   {
-    percentile: 0.51,
+    percentile: 51,
     threshold: 38195,
   },
   {
-    percentile: 0.52,
+    percentile: 52,
     threshold: 41224,
   },
   {
-    percentile: 0.53,
+    percentile: 53,
     threshold: 44479,
   },
   {
-    percentile: 0.54,
+    percentile: 54,
     threshold: 47997,
   },
   {
-    percentile: 0.55,
+    percentile: 55,
     threshold: 51820,
   },
   {
-    percentile: 0.56,
+    percentile: 56,
     threshold: 55965,
   },
   {
-    percentile: 0.57,
+    percentile: 57,
     threshold: 60409,
   },
   {
-    percentile: 0.58,
+    percentile: 58,
     threshold: 65134,
   },
   {
-    percentile: 0.59,
+    percentile: 59,
     threshold: 70126,
   },
   {
-    percentile: 0.6,
+    percentile: 60,
     threshold: 75380,
   },
   {
-    percentile: 0.61,
+    percentile: 61,
     threshold: 80905,
   },
   {
-    percentile: 0.62,
+    percentile: 62,
     threshold: 86730,
   },
   {
-    percentile: 0.63,
+    percentile: 63,
     threshold: 92910,
   },
   {
-    percentile: 0.64,
+    percentile: 64,
     threshold: 99536,
   },
   {
-    percentile: 0.65,
+    percentile: 65,
     threshold: 106723,
   },
   {
-    percentile: 0.66,
+    percentile: 66,
     threshold: 114502,
   },
   {
-    percentile: 0.67,
+    percentile: 67,
     threshold: 122871,
   },
   {
-    percentile: 0.68,
+    percentile: 68,
     threshold: 131828,
   },
   {
-    percentile: 0.69,
+    percentile: 69,
     threshold: 141376,
   },
   {
-    percentile: 0.7,
+    percentile: 70,
     threshold: 151525,
   },
   {
-    percentile: 0.71,
+    percentile: 71,
     threshold: 162295,
   },
   {
-    percentile: 0.72,
+    percentile: 72,
     threshold: 173724,
   },
   {
-    percentile: 0.73,
+    percentile: 73,
     threshold: 185882,
   },
   {
-    percentile: 0.74,
+    percentile: 74,
     threshold: 198879,
   },
   {
-    percentile: 0.75,
+    percentile: 75,
     threshold: 212868,
   },
   {
-    percentile: 0.76,
+    percentile: 76,
     threshold: 227954,
   },
   {
-    percentile: 0.77,
+    percentile: 77,
     threshold: 244226,
   },
   {
-    percentile: 0.78,
+    percentile: 78,
     threshold: 261780,
   },
   {
-    percentile: 0.79,
+    percentile: 79,
     threshold: 280727,
   },
   {
-    percentile: 0.8,
+    percentile: 80,
     threshold: 301195,
   },
   {
-    percentile: 0.81,
+    percentile: 81,
     threshold: 323334,
   },
   {
-    percentile: 0.82,
+    percentile: 82,
     threshold: 347323,
   },
   {
-    percentile: 0.83,
+    percentile: 83,
     threshold: 373385,
   },
   {
-    percentile: 0.84,
+    percentile: 84,
     threshold: 401809,
   },
   {
-    percentile: 0.85,
+    percentile: 85,
     threshold: 432976,
   },
   {
-    percentile: 0.86,
+    percentile: 86,
     threshold: 467424,
   },
   {
-    percentile: 0.87,
+    percentile: 87,
     threshold: 505933,
   },
   {
-    percentile: 0.88,
+    percentile: 88,
     threshold: 549545,
   },
   {
-    percentile: 0.89,
+    percentile: 89,
     threshold: 599360,
   },
   {
-    percentile: 0.9,
+    percentile: 90,
     threshold: 656804,
   },
   {
-    percentile: 0.91,
+    percentile: 91,
     threshold: 723879,
   },
   {
-    percentile: 0.92,
+    percentile: 92,
     threshold: 803550,
   },
   {
-    percentile: 0.93,
+    percentile: 93,
     threshold: 900553,
   },
   {
-    percentile: 0.94,
+    percentile: 94,
     threshold: 1023200,
   },
   {
-    percentile: 0.95,
+    percentile: 95,
     threshold: 1186444,
   },
   {
-    percentile: 0.96,
+    percentile: 96,
     threshold: 1416658,
   },
   {
-    percentile: 0.97,
+    percentile: 97,
     threshold: 1772646,
   },
   {
-    percentile: 0.98,
+    percentile: 98,
     threshold: 2430361,
   },
   {
-    percentile: 0.99,
+    percentile: 99,
     threshold: 4150191,
   },
 ]
@@ -448,12 +438,12 @@ const Index = ({
     setBarChartData(
       data.map((d) => {
         return {
-          percentile: Math.round(d.percentile * 100).toString(),
+          percentile: d.percentile.toString(),
           value: d.threshold.toString(),
           color:
-            d.percentile * 100 === sliderValue
+            d.percentile === sliderValue
               ? 'estimate'
-              : d.percentile * 100 === userPercentile
+              : d.percentile === userPercentile
               ? 'reality'
               : 'default',
         }
@@ -462,15 +452,12 @@ const Index = ({
   }, [sliderValue, userPercentile])
 
   useEffect(() => {
-    data.forEach((d, i) => {
-      if (
-        i !== 0 &&
-        userWealth <= d['threshold'] &&
-        userWealth >= data[i - 1]['threshold']
-      ) {
-        setUserPercentile(data[i - 1].percentile * 100)
-      }
-    })
+    console.log(data[99].threshold)
+    let percentile =
+      parseInt(userWealth) < data[99].threshold
+        ? data.find((o) => o.threshold >= parseInt(userWealth)).percentile - 1
+        : 99
+    setUserPercentile(percentile)
   }, [userWealth])
 
   useEventListener('sliderMove', (event) => setSliderValue(event.detail))
@@ -490,8 +477,8 @@ const Index = ({
     )
   }
 
-  const createOnTickUserWealth = (inc) =>
-     (_) => onChangeUserWealth(_, userWealth + inc)
+  const createOnTickUserWealth = (inc) => (_) =>
+    onChangeUserWealth(_, userWealth + inc)
 
   return (
     <div>
@@ -572,16 +559,16 @@ const Index = ({
             yScaleInvert: true,
             xAnnotations: [
               {
-                x: sliderValue.toString(),
-                value: Number(barChartData[sliderValue].value),
+                x: sliderValue?.toString(),
+                value: barChartData[sliderValue].value?.toString(),
                 label: 'Schätzung',
                 showValue: false,
                 position: 'bottom',
                 align: 'left',
               },
               {
-                x: userPercentile.toString(),
-                value: Number(userWealth),
+                x: userPercentile?.toString(),
+                value: userWealth?.toString(),
                 label: 'Tatsächlich',
                 showValue: false,
                 position: 'bottom',
@@ -589,8 +576,10 @@ const Index = ({
             ],
           }}
           values={barChartData.map((d) => {
+            let maxPercentile = Math.max(userPercentile, sliderValue)
+            console.log(maxPercentile)
             return {
-              value: d.percentile <= userPercentile ? d.value?.toString() : '0',
+              value: d.percentile <= maxPercentile ? d.value?.toString() : '0',
               percentile: d.percentile?.toString(),
               color: d.color,
             }
@@ -621,16 +610,16 @@ const Index = ({
             yScaleInvert: true,
             xAnnotations: [
               {
-                x: sliderValue.toString(),
-                value: Number(barChartData[sliderValue].value),
+                x: sliderValue?.toString(),
+                value: barChartData[sliderValue].value?.toString(),
                 label: 'Schätzung',
                 showValue: false,
                 position: 'bottom',
                 align: 'left',
               },
               {
-                x: userPercentile.toString(),
-                value: userWealth,
+                x: userPercentile?.toString(),
+                value: userWealth?.toString(),
                 label: 'Tatsächlich',
                 showValue: false,
                 position: 'bottom',
@@ -644,12 +633,14 @@ const Index = ({
                 unit: 'Franken',
                 position: 'bottom',
                 ghost: true,
+                domain: ['4150191', '0'],
               },
             ],
           }}
           values={barChartData.map((d) => {
+            let minPercentile = Math.min(userPercentile, sliderValue)
             return {
-              value: d.percentile >= userPercentile ? d.value?.toString() : '0',
+              value: d.percentile >= minPercentile ? d.value?.toString() : '0',
               percentile: d.percentile?.toString(),
               color: d.color,
             }
