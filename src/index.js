@@ -1,19 +1,50 @@
 import React, { useState, useEffect } from 'react'
+import { formatLocale } from 'd3-format'
 import { css } from 'glamor'
 
-import { Slider, Field, Interaction } from '@project-r/styleguide'
-import { Chart } from '@project-r/styleguide/chart'
+import { Slider, Field, Interaction, Editorial } from '@project-r/styleguide'
+import {
+  Chart,
+  ChartTitle,
+  ChartLead,
+  ChartLegend,
+} from '@project-r/styleguide/chart'
 
 import { useEventListener, createCustomEvent, toNumber } from './lib/utils'
 
 const { P } = Interaction
 
+const thousandSeparator = '\u2019'
+const swissNumbers = formatLocale({
+  decimal: ',',
+  thousands: thousandSeparator,
+  grouping: [3],
+  currency: ['CHF\u00a0', ''],
+})
+
+const formatNumber = swissNumbers.format(',d')
+
 const styles = {
   sliderLabels: css({
+    fontSize: '14px',
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: 0,
+    marginBottom: '20px',
+    textAlign: 'center',
+  }),
+  legendContainer: css({
+    marginBottom: '10px',
+  }),
+  legendLabel: css({
+    marginRight: '10px',
+    fontSize: '14px',
+    borderBottom: '3px solid',
+    paddingBottom: '1px',
+  }),
+  textMarker: css({
+    borderBottom: '3px solid',
+    paddingBottom: '1px',
   }),
 }
 
@@ -424,15 +455,36 @@ const Index = ({
   showLabel,
   showSlider,
   showAllBars,
+  allBarsTitle,
+  allBarsLead,
   showPoorerBars,
+  poorerBarsTitle,
+  poorerBarsLead,
   showRicherBars,
+  richerBarsTitle,
+  richerBarsLead,
+  sliderTitle,
+  sliderLabel,
+  sliderLabelSuffix,
+  inputLabel,
+  showSliderText,
+  sliderTextPrefix,
+  sliderTextLabel,
+  sliderTextSuffix,
+  showWealthText,
+  wealthTextPrefix,
+  wealthTextLabel,
+  wealthTextSuffix,
+  wealthTextLabel2,
+  chartLegend,
+  chartLegendUrl,
+  wealthTitle,
 }) => {
-  const [sliderValue, setSliderValue] = useState(80)
+  const [sliderValue, setSliderValue] = useState(50)
   const [barChartData, setBarChartData] = useState(data)
-  const [userWealth, setUserWealth] = useState(100000)
-  const [userPercentile, setUserPercentile] = useState(25)
-
-  console.log(barChartData)
+  const [userWealth, setUserWealth] = useState(30000)
+  const [userPercentile, setUserPercentile] = useState(47)
+  const [estimatedWealth, setEstimatedWealth] = useState(320000)
 
   useEffect(() => {
     setBarChartData(
@@ -449,16 +501,16 @@ const Index = ({
         }
       })
     )
+    setEstimatedWealth(barChartData[sliderValue].value)
   }, [sliderValue, userPercentile])
 
   useEffect(() => {
-    console.log(data[99].threshold)
     let percentile =
       parseInt(userWealth) < data[99].threshold
         ? data.find((o) => o.threshold >= parseInt(userWealth)).percentile - 1
         : 99
-    setUserPercentile(percentile)
-  }, [userWealth])
+    setUserPercentile(userWealth === 0 ? 0 : percentile)
+  }, [userWealth, sliderValue])
 
   useEventListener('sliderMove', (event) => setSliderValue(event.detail))
   useEventListener('wealthInput', (event) => setUserWealth(event.detail))
@@ -484,9 +536,9 @@ const Index = ({
     <div>
       {showSlider && (
         <>
-          <P>Was schätzen Sie? In welcher Perzentile liegt Ihr Vermögen?</P>
+          <P>{sliderTitle}</P>
           <Slider
-            label={'Ihre Schätzung: ' + sliderValue + '. Perzentile'}
+            label={sliderLabel + sliderValue + sliderLabelSuffix}
             value={sliderValue}
             min='0'
             max='99'
@@ -500,152 +552,218 @@ const Index = ({
         </>
       )}
       {showLabel && (
-        <Field
-          label='Vermögen'
-          value={userWealth}
-          onChange={onChangeUserWealth}
-          onInc={createOnTickUserWealth(1000)}
-          onDec={createOnTickUserWealth(-1000)}
-        />
+        <>
+          <P>{wealthTitle}</P>
+          <Field
+            label={inputLabel}
+            value={userWealth}
+            onChange={onChangeUserWealth}
+            onInc={createOnTickUserWealth(1000)}
+            onDec={createOnTickUserWealth(-1000)}
+          />
+        </>
+      )}
+
+      {showSliderText && (
+        <Editorial.P>
+          {sliderTextPrefix}
+          <span {...styles.textMarker} style={{ borderColor: '#1f77b4' }}>
+            {sliderValue}
+            {sliderTextLabel}
+          </span>
+          {sliderTextSuffix}
+        </Editorial.P>
+      )}
+
+      {showWealthText && (
+        <Editorial.P>
+          {wealthTextPrefix}
+          <strong>
+            {formatNumber(userWealth)}
+            {wealthTextLabel}
+          </strong>
+          {wealthTextSuffix}
+          <span {...styles.textMarker} style={{ borderColor: '#d62728' }}>
+            {userPercentile}
+            {wealthTextLabel2}
+          </span>
+          .
+        </Editorial.P>
       )}
 
       {showAllBars && (
-        <Chart
-          config={{
-            type: 'TimeBar',
-            x: 'percentile',
-            padding: 0,
-            xTicks: [0, 25, 50, 75, 99],
-            yTicks: [],
-            xScale: 'linear',
-            xBandPadding: 0.5,
-            height: 100,
-            color: 'color',
-            colorLegend: false,
-            colorMap: {
-              default: '#D5D8D7',
-              estimate: '#00A000',
-              reality: '#D02324',
-            },
-            unit: 'Franken',
-            xUnit: '. Perzentil',
-          }}
-          values={barChartData.map((d) => {
-            return { ...d, value: '1000' }
-          })}
-        />
+        <div>
+          <ChartTitle>{allBarsTitle}</ChartTitle>
+          <ChartLead>{allBarsLead}</ChartLead>
+          <div>
+            <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
+              Schätzung
+            </span>
+            <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
+              Tatsächlich
+            </span>
+          </div>
+          <Chart
+            config={{
+              type: 'TimeBar',
+              x: 'percentile',
+              padding: 0,
+              xTicks: [0, 25, 50, 75, 99],
+              yTicks: [],
+              xScale: 'linear',
+              xBandPadding: 0.5,
+              height: 50,
+              color: 'color',
+              colorLegend: false,
+              colorMap: {
+                default: '#D5D8D7',
+                estimate: '#1f77b4',
+                reality: '#d62728',
+              },
+              unit: 'Franken',
+              xUnit: '. Perzentil',
+            }}
+            values={barChartData.map((d) => {
+              return { ...d, value: '1000' }
+            })}
+          />
+          <ChartLegend>
+            Quelle:{' '}
+            <Editorial.A href={chartLegendUrl}>{chartLegend}</Editorial.A>
+          </ChartLegend>
+        </div>
       )}
 
       {showPoorerBars && (
-        <Chart
-          config={{
-            type: 'TimeBar',
-            x: 'percentile',
-            padding: 0,
-            xTicks: [0, 25, 50, 75, 99],
-            yTicks: [],
-            xScale: 'linear',
-            xBandPadding: 0.5,
-            height: 400,
-            color: 'color',
-            colorLegend: false,
-            colorMap: {
-              default: '#D5D8D7',
-              estimate: '#00A000',
-              reality: '#D02324',
-            },
-            unit: 'Franken',
-            xUnit: '. Perzentil',
-            yScaleInvert: true,
-            xAnnotations: [
-              {
-                x: sliderValue?.toString(),
-                value: barChartData[sliderValue].value?.toString(),
-                label: 'Schätzung',
-                showValue: false,
-                position: 'bottom',
-                align: 'left',
+        <div>
+          <ChartTitle>{poorerBarsTitle}</ChartTitle>
+          <ChartLead>{poorerBarsLead}</ChartLead>
+          <div {...styles.legendContainer}>
+            {sliderValue <= 50 && (
+              <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
+                Schätzung
+              </span>
+            )}
+            {userPercentile <= 50 && (
+              <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
+                Tatsächlich
+              </span>
+            )}
+          </div>
+          <Chart
+            config={{
+              type: 'TimeBar',
+              x: 'percentile',
+              padding: 0,
+              xTicks: [0, 25, 50, 75, 99],
+              xScale: 'linear',
+              xBandPadding: 0.5,
+              height: 95.238,
+              domain: [0, 40000],
+              color: 'color',
+              colorLegend: false,
+              colorMap: {
+                default: '#D5D8D7',
+                estimate: '#1f77b4',
+                reality: '#d62728',
               },
-              {
-                x: userPercentile?.toString(),
-                value: userWealth?.toString(),
-                label: 'Tatsächlich',
-                showValue: false,
-                position: 'bottom',
-              },
-            ],
-          }}
-          values={barChartData.map((d) => {
-            let maxPercentile = Math.max(userPercentile, sliderValue)
-            console.log(maxPercentile)
-            return {
-              value: d.percentile <= maxPercentile ? d.value?.toString() : '0',
-              percentile: d.percentile?.toString(),
-              color: d.color,
-            }
-          })}
-        />
+              unit: 'Franken',
+              xUnit: '. Perzentil',
+              yScaleInvert: true,
+            }}
+            values={barChartData.map((d) => {
+              return {
+                value: d.percentile <= 50 ? d.value?.toString() : '0',
+                percentile: d.percentile?.toString(),
+                color: d.color,
+              }
+            })}
+          />
+          <ChartLegend>
+            Quelle:{' '}
+            <Editorial.A href={chartLegendUrl}>{chartLegend}</Editorial.A>
+          </ChartLegend>
+        </div>
       )}
 
       {showRicherBars && (
-        <Chart
-          config={{
-            type: 'TimeBar',
-            x: 'percentile',
-            padding: 0,
-            xTicks: [0, 25, 50, 75, 99],
-            yTicks: [],
-            xScale: 'linear',
-            xBandPadding: 0.5,
-            height: 10000,
-            color: 'color',
-            colorLegend: false,
-            colorMap: {
-              default: '#D5D8D7',
-              estimate: '#00A000',
-              reality: '#D02324',
-            },
-            unit: 'Franken',
-            xUnit: '. Perzentil',
-            yScaleInvert: true,
-            xAnnotations: [
-              {
-                x: sliderValue?.toString(),
-                value: barChartData[sliderValue].value?.toString(),
-                label: 'Schätzung',
-                showValue: false,
-                position: 'bottom',
-                align: 'left',
+        <div>
+          <ChartTitle>{richerBarsTitle}</ChartTitle>
+          <ChartLead>{richerBarsLead}</ChartLead>
+          <div {...styles.legendContainer}>
+            <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
+              Schätzung
+            </span>
+            <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
+              Tatsächlich
+            </span>
+          </div>
+          <Chart
+            config={{
+              type: 'TimeBar',
+              x: 'percentile',
+              padding: 0,
+              xTicks: [0, 25, 50, 75, 99],
+              domain: [0, 4200000],
+              xScale: 'linear',
+              xBandPadding: 0.5,
+              height: 10000,
+              color: 'color',
+              colorLegend: false,
+              colorMap: {
+                default: '#D5D8D7',
+                estimate: '#1f77b4',
+                reality: '#d62728',
               },
-              {
-                x: userPercentile?.toString(),
-                value: userWealth?.toString(),
-                label: 'Tatsächlich',
-                showValue: false,
-                position: 'bottom',
-              },
-              {
-                x1: '0',
-                x2: '90',
-                value: 656804,
-                label: 'Reichste 10 Prozent',
-                showValue: true,
-                unit: 'Franken',
-                position: 'bottom',
-                ghost: true,
-                domain: ['4150191', '0'],
-              },
-            ],
-          }}
-          values={barChartData.map((d) => {
-            let minPercentile = Math.min(userPercentile, sliderValue)
-            return {
-              value: d.percentile >= minPercentile ? d.value?.toString() : '0',
-              percentile: d.percentile?.toString(),
-              color: d.color,
-            }
-          })}
-        />
+              unit: 'Franken',
+              xUnit: '. Perzentil',
+              yScaleInvert: true,
+              xAnnotations: [
+                {
+                  x1: '0',
+                  x2: '90',
+                  value: '656804',
+                  label: 'Reichste 10 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
+                  x2: '95',
+                  value: '1186444',
+                  label: 'Reichste 5 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
+                  x2: '99',
+                  value: '4150191',
+                  label: 'Reichstes Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+              ],
+            }}
+            values={barChartData.map((d) => {
+              return {
+                value: d.value?.toString(),
+                percentile: d.percentile?.toString(),
+                color: d.color,
+              }
+            })}
+          />
+          <ChartLegend>
+            Quelle:{' '}
+            <Editorial.A href={chartLegendUrl}>{chartLegend}</Editorial.A>
+          </ChartLegend>
+        </div>
       )}
     </div>
   )

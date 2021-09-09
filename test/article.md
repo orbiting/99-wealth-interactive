@@ -32,7 +32,9 @@ Der grosse Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilde
 {
   "autoHtml": false,
   "props": {
-    "text": "EMBDED Edge to Edge",
+    "sliderTitle": "Was schätzen Sie? In welcher Perzentile liegt Ihr Vermögen?",
+    "sliderLabel": "Ihre Schätzung: ",
+    "sliderLabelSuffix": ". Perzentil",
     "showSlider": true
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
@@ -45,6 +47,28 @@ Der grosse Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilde
 
 <section><h6>CENTER</h6>
 
+<section><h6>DYNAMIC_COMPONENT</h6>
+
+```
+{
+  "autoHtml": false,
+  "props": {
+    "text": "EMBDED Center",
+    "showSliderText": true,
+    "sliderTextPrefix": "Sie schätzen, dass Sie sich im ",
+    "sliderTextLabel": ". Perzentil",
+    "sliderTextSuffix": " befinden. Das heisst, 5 Prozent sind ärmer als Sie."
+  },
+  "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
+}
+```
+
+<hr /></section>
+
+<hr /></section>
+
+<section><h6>CENTER</h6>
+
 Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse. Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort. Unterwegs traf es eine Copy.
 
 <section><h6>DYNAMIC_COMPONENT</h6>
@@ -53,8 +77,32 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
 {
   "autoHtml": false,
   "props": {
+    "wealthTitle": "Wie gross ist Ihr Vermögen? Kramen Sie die Angaben aus Ihrer letzten Steuererklärung hervor oder versuchen Sie, sich an den Betrag zu erinnern",
+    "showLabel": true,
+    "inputLabel": "Vermögen"
+  },
+  "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
+}
+```
+
+<hr /></section>
+
+<hr /></section>
+
+<section><h6>CENTER</h6>
+
+<section><h6>DYNAMIC_COMPONENT</h6>
+
+```
+{
+  "autoHtml": false,
+  "props": {
     "text": "EMBDED Center",
-    "showLabel": true
+    "showWealthText": true,
+    "wealthTextPrefix": "Mit Ihrem Vermögen von ",
+    "wealthTextLabel": " Franken",
+    "wealthTextSuffix": " sind Sie tatsächlich im ",
+    "wealthTextLabel2": ". Perzentil"
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
@@ -75,7 +123,11 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
   "autoHtml": false,
   "props": {
     "text": "EMBDED Center",
-    "showAllBars": true
+    "showAllBars": true,
+    "allBarsTitle": "Subjektiver und objektiver Reichtum",
+    "allBarsLead": "Vermögensverteilung in der Schweiz",
+    "chartLegend": "ESTV",
+    "chartLegendUrl": ""
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
@@ -96,7 +148,11 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
   "autoHtml": false,
   "props": {
     "text": "EMBDED Center",
-    "showPoorerBars": true
+    "showPoorerBars": true,
+    "poorerBarsTitle": "Wer alles ärmer ist als Sie...",
+    "poorerBarsLead": "Vermögensverteilung in der Schweiz (Einzelpersonen)",
+    "chartLegend": "ESTV",
+    "chartLegendUrl": ""
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
@@ -117,7 +173,11 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
   "autoHtml": false,
   "props": {
     "text": "EMBDED Center",
-    "showRicherBars": true
+    "showRicherBars": true,
+    "richerBarsTitle": "... und wer alles reicher ist",
+    "richerBarsLead": "Vermögensverteilung in der Schweiz (Einzelpersonen)",
+    "chartLegend": "ESTV",
+    "chartLegendUrl": ""
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
