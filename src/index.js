@@ -26,19 +26,14 @@ const formatNumber = swissNumbers.format(',d')
 
 const styles = {
   sliderLabels: css({
-    fontSize: '14px',
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: 0,
-    marginBottom: '20px',
-    textAlign: 'center',
-  }),
-  legendContainer: css({
     marginBottom: '10px',
+    textAlign: 'center',
   }),
   legendLabel: css({
     marginRight: '10px',
-    fontSize: '14px',
     borderBottom: '3px solid',
     paddingBottom: '1px',
   }),
@@ -479,6 +474,9 @@ const Index = ({
   chartLegend,
   chartLegendUrl,
   wealthTitle,
+  sliderFootnote,
+  wealthFootnote,
+  wealthLead,
 }) => {
   const [sliderValue, setSliderValue] = useState(50)
   const [barChartData, setBarChartData] = useState(data)
@@ -536,7 +534,7 @@ const Index = ({
     <div>
       {showSlider && (
         <>
-          <P>{sliderTitle}</P>
+          <ChartTitle>{sliderTitle}</ChartTitle>
           <Slider
             label={sliderLabel + sliderValue + sliderLabelSuffix}
             value={sliderValue}
@@ -545,15 +543,19 @@ const Index = ({
             fullWidth
             onChange={onChangeSliderValue}
           />
-          <div {...styles.sliderLabels}>
+          <Editorial.Note {...styles.sliderLabels}>
             <span>0</span>
-            <span>99</span>
-          </div>
+            <span>99. Perzentil</span>
+          </Editorial.Note>
+          <Editorial.Note style={{ marginTop: '6px' }}>
+            {sliderFootnote}
+          </Editorial.Note>
         </>
       )}
       {showLabel && (
         <>
-          <P>{wealthTitle}</P>
+          <ChartTitle>{wealthTitle}</ChartTitle>
+          <ChartLead>{wealthLead}</ChartLead>
           <Field
             label={inputLabel}
             value={userWealth}
@@ -561,6 +563,9 @@ const Index = ({
             onInc={createOnTickUserWealth(1000)}
             onDec={createOnTickUserWealth(-1000)}
           />
+          <Editorial.Note style={{ marginTop: '6px' }}>
+            {wealthFootnote}
+          </Editorial.Note>
         </>
       )}
 
@@ -595,14 +600,14 @@ const Index = ({
         <div>
           <ChartTitle>{allBarsTitle}</ChartTitle>
           <ChartLead>{allBarsLead}</ChartLead>
-          <div>
+          <Editorial.Note style={{ margin: 0 }}>
             <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
               Schätzung
             </span>
             <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
               Tatsächlich
             </span>
-          </div>
+          </Editorial.Note>
           <Chart
             config={{
               type: 'TimeBar',
@@ -638,7 +643,7 @@ const Index = ({
         <div>
           <ChartTitle>{poorerBarsTitle}</ChartTitle>
           <ChartLead>{poorerBarsLead}</ChartLead>
-          <div {...styles.legendContainer}>
+          <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             {sliderValue <= 50 && (
               <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
                 Schätzung
@@ -649,7 +654,7 @@ const Index = ({
                 Tatsächlich
               </span>
             )}
-          </div>
+          </Editorial.Note>
           <Chart
             config={{
               type: 'TimeBar',
@@ -690,14 +695,14 @@ const Index = ({
         <div>
           <ChartTitle>{richerBarsTitle}</ChartTitle>
           <ChartLead>{richerBarsLead}</ChartLead>
-          <div {...styles.legendContainer}>
+          <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
               Schätzung
             </span>
             <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
               Tatsächlich
             </span>
-          </div>
+          </Editorial.Note>
           <Chart
             config={{
               type: 'TimeBar',

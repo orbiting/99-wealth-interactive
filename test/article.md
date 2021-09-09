@@ -35,7 +35,8 @@ Der grosse Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilde
     "sliderTitle": "Was schätzen Sie? In welcher Perzentile liegt Ihr Vermögen?",
     "sliderLabel": "Ihre Schätzung: ",
     "sliderLabelSuffix": ". Perzentil",
-    "showSlider": true
+    "showSlider": true,
+    "sliderFootnote": "Keine Angst: Ihre Eingabe wird nicht gespeichert; alle Daten bleiben bei Ihnen."
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
@@ -77,9 +78,11 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
 {
   "autoHtml": false,
   "props": {
-    "wealthTitle": "Wie gross ist Ihr Vermögen? Kramen Sie die Angaben aus Ihrer letzten Steuererklärung hervor oder versuchen Sie, sich an den Betrag zu erinnern",
+    "wealthTitle": "Wie gross ist Ihr Vermögen?",
+    "wealthLead": "Kramen Sie die Angaben aus Ihrer letzten Steuererklärung hervor oder versuchen Sie, sich an den Betrag zu erinnern",
     "showLabel": true,
-    "inputLabel": "Vermögen"
+    "inputLabel": "Vermögen",
+    "wealthFootnote": "Zum steuerbaren Vermögen zählen das Bargeld auf Ihrem Konto, Wertschriften (zum Beispiel Aktien) sowie der Wert von Immobilien (nach Abzug der Hypothekarschulden)."
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
