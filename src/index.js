@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { formatLocale } from 'd3-format'
 import { css } from 'glamor'
 
-import { Slider, Field, Interaction, Editorial } from '@project-r/styleguide'
+import { Slider, Field, Editorial } from '@project-r/styleguide'
 import {
   Chart,
   ChartTitle,
@@ -11,8 +11,6 @@ import {
 } from '@project-r/styleguide/chart'
 
 import { useEventListener, createCustomEvent, toNumber } from './lib/utils'
-
-const { P } = Interaction
 
 const thousandSeparator = '\u2019'
 const swissNumbers = formatLocale({
@@ -480,7 +478,7 @@ const Index = ({
 }) => {
   const [sliderValue, setSliderValue] = useState(50)
   const [barChartData, setBarChartData] = useState(data)
-  const [userWealth, setUserWealth] = useState(30000)
+  const [userWealth, setUserWealth] = useState(0)
   const [userPercentile, setUserPercentile] = useState(47)
   const [estimatedWealth, setEstimatedWealth] = useState(320000)
 
@@ -600,12 +598,12 @@ const Index = ({
         <div>
           <ChartTitle>{allBarsTitle}</ChartTitle>
           <ChartLead>{allBarsLead}</ChartLead>
-          <Editorial.Note style={{ margin: 0 }}>
+          <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
-              Schätzung
+              Ihre Schätzung
             </span>
             <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
-              Tatsächlich
+              Tatsächliche Position
             </span>
           </Editorial.Note>
           <Chart
@@ -627,6 +625,24 @@ const Index = ({
               },
               unit: 'Franken',
               xUnit: '. Perzentil',
+              xAnnotations: [
+                {
+                  x: sliderValue?.toString(),
+                  value: '1000',
+                  showValue: false,
+                  label: sliderValue,
+                  position: 'top',
+                  textAlignment: 'right',
+                },
+                {
+                  x: userPercentile?.toString(),
+                  value: '1000',
+                  showValue: false,
+                  label: userPercentile,
+                  position: 'top',
+                  textAlignment: 'right',
+                },
+              ],
             }}
             values={barChartData.map((d) => {
               return { ...d, value: '1000' }
@@ -646,12 +662,12 @@ const Index = ({
           <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             {sliderValue <= 50 && (
               <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
-                Schätzung
+                Ihre Schätzung
               </span>
             )}
             {userPercentile <= 50 && (
               <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
-                Tatsächlich
+                Tatsächliche Position
               </span>
             )}
           </Editorial.Note>
@@ -663,8 +679,8 @@ const Index = ({
               xTicks: [0, 25, 50, 75, 99],
               xScale: 'linear',
               xBandPadding: 0.5,
-              height: 95.238,
-              domain: [0, 40000],
+              height: 121,
+              domain: [0, 50000],
               color: 'color',
               colorLegend: false,
               colorMap: {
@@ -675,6 +691,17 @@ const Index = ({
               unit: 'Franken',
               xUnit: '. Perzentil',
               yScaleInvert: true,
+              xAnnotations: [
+                {
+                  x: '50',
+                  value: '35364',
+                  label: '50 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  textAlignment: 'right',
+                },
+              ],
             }}
             values={barChartData.map((d) => {
               return {
@@ -697,10 +724,10 @@ const Index = ({
           <ChartLead>{richerBarsLead}</ChartLead>
           <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
-              Schätzung
+              Ihre Schätzung
             </span>
             <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
-              Tatsächlich
+              Tatsächliche Position
             </span>
           </Editorial.Note>
           <Chart
@@ -709,7 +736,8 @@ const Index = ({
               x: 'percentile',
               padding: 0,
               xTicks: [0, 25, 50, 75, 99],
-              domain: [0, 4200000],
+              yTicks: [],
+              domain: [0, 4160000],
               xScale: 'linear',
               xBandPadding: 0.5,
               height: 10000,
@@ -726,6 +754,26 @@ const Index = ({
               xAnnotations: [
                 {
                   x1: '0',
+                  x2: '50',
+                  value: '35364',
+                  label: '50 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
+                  x2: '75',
+                  value: '212868',
+                  label: '75 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
                   x2: '90',
                   value: '656804',
                   label: 'Reichste 10 Prozent',
@@ -739,6 +787,36 @@ const Index = ({
                   x2: '95',
                   value: '1186444',
                   label: 'Reichste 5 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
+                  x2: '96',
+                  value: '1416658',
+                  label: 'Reichste 4 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
+                  x2: '97',
+                  value: '1772646',
+                  label: 'Reichste 3 Prozent',
+                  showValue: true,
+                  unit: 'Franken',
+                  position: 'bottom',
+                  leftLabel: true,
+                },
+                {
+                  x1: '0',
+                  x2: '98',
+                  value: '2430361',
+                  label: 'Reichste 2 Prozent',
                   showValue: true,
                   unit: 'Franken',
                   position: 'bottom',
