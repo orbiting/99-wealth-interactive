@@ -475,6 +475,8 @@ const Index = ({
   sliderFootnote,
   wealthFootnote,
   wealthLead,
+  legendEstimate,
+  legendWealth,
 }) => {
   const [sliderValue, setSliderValue] = useState(50)
   const [barChartData, setBarChartData] = useState(data)
@@ -600,10 +602,10 @@ const Index = ({
           <ChartLead>{allBarsLead}</ChartLead>
           <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
-              Ihre Schätzung
+              {legendEstimate}
             </span>
             <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
-              Tatsächliche Position
+              {legendWealth}
             </span>
           </Editorial.Note>
           <Chart
@@ -662,12 +664,12 @@ const Index = ({
           <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             {sliderValue <= 50 && (
               <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
-                Ihre Schätzung
+                {legendEstimate}
               </span>
             )}
             {userPercentile <= 50 && (
               <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
-                Tatsächliche Position
+                {legendWealth}
               </span>
             )}
           </Editorial.Note>
@@ -724,10 +726,10 @@ const Index = ({
           <ChartLead>{richerBarsLead}</ChartLead>
           <Editorial.Note style={{ marginTop: 0, marginBottom: '12px' }}>
             <span {...styles.legendLabel} style={{ borderColor: '#1f77b4' }}>
-              Ihre Schätzung
+              {legendEstimate}
             </span>
             <span {...styles.legendLabel} style={{ borderColor: '#d62728' }}>
-              Tatsächliche Position
+              {legendWealth}
             </span>
           </Editorial.Note>
           <Chart

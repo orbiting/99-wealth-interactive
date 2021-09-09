@@ -130,7 +130,9 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
     "allBarsTitle": "Subjektiver und objektiver Reichtum",
     "allBarsLead": "Vermögensverteilung in der Schweiz",
     "chartLegend": "ESTV",
-    "chartLegendUrl": ""
+    "chartLegendUrl": "",
+    "legendEstimate": "Ihre Schätzung",
+    "legendWealth": "Tatsächliche Position"
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
@@ -155,7 +157,9 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
     "poorerBarsTitle": "Wer alles ärmer ist als Sie...",
     "poorerBarsLead": "Vermögensverteilung in der Schweiz (Einzelpersonen)",
     "chartLegend": "ESTV",
-    "chartLegendUrl": ""
+    "chartLegendUrl": "",
+    "legendEstimate": "Ihre Schätzung",
+    "legendWealth": "Tatsächliche Position"
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
@@ -180,7 +184,9 @@ Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzt
     "richerBarsTitle": "... und wer alles reicher ist",
     "richerBarsLead": "Vermögensverteilung in der Schweiz (Einzelpersonen)",
     "chartLegend": "ESTV",
-    "chartLegendUrl": ""
+    "chartLegendUrl": "",
+    "legendEstimate": "Ihre Schätzung",
+    "legendWealth": "Tatsächliche Position"
   },
   "src": "https://cdn.repub.ch/s3/republik-assets/dynamic-components/REPOSLUG/index.js"
 }
