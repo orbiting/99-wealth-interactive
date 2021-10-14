@@ -617,7 +617,7 @@ const Index = ({
               yTicks: [],
               xScale: 'linear',
               xBandPadding: 0.5,
-              height: 50,
+              height: 60,
               color: 'color',
               colorLegend: false,
               colorMap: {
@@ -626,7 +626,7 @@ const Index = ({
                 reality: '#d62728',
               },
               unit: 'Franken',
-              xUnit: '. Perzentil',
+              xUnit: 'Perzentil',
               xAnnotations: [
                 {
                   x: sliderValue?.toString(),
@@ -693,7 +693,7 @@ const Index = ({
                 reality: '#d62728',
               },
               unit: 'Franken',
-              xUnit: '. Perzentil',
+              xUnit: 'Perzentil',
               yScaleInvert: true,
               xAnnotations: [
                 {
@@ -754,7 +754,7 @@ const Index = ({
                 reality: '#d62728',
               },
               unit: 'Franken',
-              xUnit: '. Perzentil',
+              xUnit: 'Perzentil',
               yScaleInvert: true,
               xAnnotations: [
                 {
